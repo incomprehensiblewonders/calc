@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#D4A574">
+    <meta name="description" content="Premium Calc Pro - продвинутый калькулятор с инженерным режимом и подписками">
+    <title>Premium Calc Pro</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+
+<div class="calculator">
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="normalBtn" onclick="setMode('normal')">Обычный</button>
+        <button class="mode-btn locked" id="engineerBtn" onclick="setMode('engineer')">
+            Инженерный <span class="lock-badge">🔒</span>
+        </button>
+        <button class="mode-btn locked" id="numeralBtn" onclick="setMode('numeral')">
+            Системы счисления <span class="lock-badge">🔒</span>
+        </button>
+    </div>
+
+    <div class="display" id="display">0</div>
+    
+    <!-- Обычный калькулятор -->
+    <div class="buttons" id="normalButtons">
+        <button class="btn-clear" onclick="clearDisplay()">C</button>
+        <button class="btn-operator" onclick="appendOperator('/')">/</button>
+        <button class="btn-operator" onclick="appendOperator('*')">×</button>
+        <button class="btn-operator" onclick="appendOperator('-')">−</button>
+        
+        <button class="btn-digit" onclick="appendDigit('7')">7</button>
+        <button class="btn-digit" onclick="appendDigit('8')">8</button>
+        <button class="btn-digit" onclick="appendDigit('9')">9</button>
+        <button class="btn-operator" onclick="appendOperator('+')">+</button>
+        
+        <button class="btn-digit" onclick="appendDigit('4')">4</button>
+        <button class="btn-digit" onclick="appendDigit('5')">5</button>
+        <button class="btn-digit" onclick="appendDigit('6')">6</button>
+        <button class="btn-special" onclick="appendFunc('pow')">x^y</button>
+        
+        <button class="btn-digit" onclick="appendDigit('1')">1</button>
+        <button class="btn-digit" onclick="appendDigit('2')">2</button>
+        <button class="btn-digit" onclick="appendDigit('3')">3</button>
+        <button class="btn-special" onclick="appendFunc('sqrt')">√x</button>
+        
+        <button class="btn-digit" onclick="appendDigit('0')" style="grid-column: span 2;">0</button>
+        <button class="btn-operator" onclick="appendOperator('.')">.</button>
+        <button class="btn-equals" onclick="handleEquals()">=</button>
+    </div>
+
+    <!-- Инженерный калькулятор -->
+    <div class="buttons extended" id="engineerButtons" style="display: none;">
+        <button class="btn-clear" onclick="clearDisplay()">C</button>
+        <button class="btn-operator" onclick="appendOperator('/')">/</button>
+        <button class="btn-operator" onclick="appendOperator('*')">×</button>
+        <button class="btn-operator" onclick="appendOperator('-')">−</button>
+        <button class="btn-operator" onclick="appendOperator('+')">+</button>
+        
+        <button class="btn-special" onclick="appendFunc('sin')">sin</button>
+        <button class="btn-special" onclick="appendFunc('cos')">cos</button>
+        <button class="btn-special" onclick="appendFunc('tan')">tan</button>
+        <button class="btn-special" onclick="appendFunc('log')">log</button>
+        <button class="btn-special" onclick="appendFunc('ln')">ln</button>
+        
+        <button class="btn-digit" onclick="appendDigit('7')">7</button>
+        <button class="btn-digit" onclick="appendDigit('8')">8</button>
+        <button class="btn-digit" onclick="appendDigit('9')">9</button>
+        <button class="btn-special" onclick="appendFunc('pow')">x^y</button>
+        <button class="btn-special" onclick="appendFunc('sqrt')">√x</button>
+        
+        <button class="btn-digit" onclick="appendDigit('4')">4</button>
+        <button class="btn-digit" onclick="appendDigit('5')">5</button>
+        <button class="btn-digit" onclick="appendDigit('6')">6</button>
+        <button class="btn-special" onclick="appendFunc('fact')">x!</button>
+        <button class="btn-special" onclick="appendOperator('%')">%</button>
+        
+        <button class="btn-digit" onclick="appendDigit('1')">1</button>
+        <button class="btn-digit" onclick="appendDigit('2')">2</button>
+        <button class="btn-digit" onclick="appendDigit('3')">3</button>
+        <button class="btn-special" onclick="appendFunc('pi')">π</button>
+        <button class="btn-special" onclick="appendFunc('e')">e</button>
+        
+        <button class="btn-digit" onclick="appendDigit('0')">0</button>
+        <button class="btn-operator" onclick="appendOperator('.')">.</button>
+        <button class="btn-special" onclick="appendBracket('(')">(</button>
+        <button class="btn-special" onclick="appendBracket(')')">)</button>
+        <button class="btn-equals" onclick="handleEquals()">=</button>
+    </div>
+
+    <!-- Калькулятор систем счисления -->
+    <div class="buttons extended numeral" id="numeralButtons" style="display: none;">
+        <div class="numeral-header">
+            <button class="btn-clear" onclick="clearDisplay()">C</button>
+            <div class="numeral-display">
+                <span class="numeral-label">DEC (10):</span>
+                <span class="numeral-value" id="decimal-result">0</span>
+            </div>
+        </div>
+        
+        <button class="btn-special" onclick="switchNumeral('binary')">BIN (2)</button>
+        <button class="btn-special" onclick="switchNumeral('octal')">OCT (8)</button>
+        <button class="btn-special" onclick="switchNumeral('decimal')">DEC (10)</button>
+        <button class="btn-special" onclick="switchNumeral('hex')">HEX (16)</button>
+        
+        <input type="text" id="binary-input" class="numeral-input" placeholder="Двоичная (0,1)" style="display: none;">
+        <input type="text" id="octal-input" class="numeral-input" placeholder="Восьмеричная (0-7)" style="display: none;">
+        <input type="text" id="decimal-input" class="numeral-input" placeholder="Десятичная (0-9)" style="display: none;">
+        <input type="text" id="hex-input" class="numeral-input" placeholder="Шестнадцатеричная (0-9, A-F)" style="display: none;">
+        
+        <button class="btn-equals" onclick="convertNumeral()">Конвертировать</button>
+        <button class="btn-special" onclick="copyToClipboard()">📋 Копировать</button>
+        
+        <div class="numeral-output">
+            <div class="numeral-output-item"><strong>BIN:</strong> <span id="output-binary">0</span></div>
+            <div class="numeral-output-item"><strong>OCT:</strong> <span id="output-octal">0</span></div>
+            <div class="numeral-output-item"><strong>DEC:</strong> <span id="output-decimal">0</span></div>
+        <div class="numeral-output-item"><strong>HEX:</strong> <span id="output-hex">0</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно выбора подписки -->
+<div class="modal" id="paywallModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-btn" onclick="closePaywall()">&times;</button>
+            <h2>✨ Разблокируйте Premium</h2>
+            <p id="expressionText">Результат требует Pro версии</p>
+        </div>
+        <div class="modal-body">
+            <h3>Выберите подписку</h3>
+            
+            <div class="plans-container">
+                <div class="plan" id="monthlyPlan" onclick="selectPlan('monthly', 20)">
+                    <div class="plan-title">📅 Месячный план</div>
+                    <div class="plan-desc">Доступ на 30 дней</div>
+                    <div class="plan-price">$20 / месяц</div>
+                    <div class="plan-features">✓ Обычный калькулятор<br>✓ Степени, корни, проценты</div>
+                    <button class="select-btn">Выбрать этот план</button>
+                </div>
+
+                <div class="plan" id="yearlyPlan" onclick="selectPlan('yearly', 200)">
+                    <div class="plan-title">⭐ Годовой план</div>
+                    <div class="plan-desc">Неограниченный доступ на 365 дней</div>
+                    <div class="plan-price">$200 / год</div>
+                    <div class="plan-features">✓ Обычный калькулятор<br>✓ Экономия 50%<br>✓ Степени, корни, проценты</div>
+                    <button class="select-btn">Выбрать этот план</button>
+                </div>
+
+                <div class="plan" id="engineeringPlan" onclick="selectPlan('engineering', 300)">
+                    <div class="plan-title">🚀 План "Инженер"</div>
+                    <div class="plan-desc">Премиум на 365 дней + инженерный режим</div>
+                    <div class="plan-price">$300 / год</div>
+                    <div class="plan-features">✓ Все базовые функции<br>✓ sin, cos, tan, log, ln<br>✓ Факториалы, π, e<br>✓ Скобки и сложные выражения</div>
+                    <button class="select-btn">Выбрать этот план</button>
+                </div>
+
+                <div class="plan" id="numeralPlan" onclick="selectPlan('numeral', 250)">
+                    <div class="plan-title">🔢 План "Программист"</div>
+                    <div class="plan-desc">Конвертация между системами за 365 дней</div>
+                    <div class="plan-price">$250 / год</div>
+                    <div class="plan-features">✓ Двоичная (BIN)<br>✓ Восьмеричная (OCT)<br>✓ Десятичная (DEC)<br>✓ Шестнадцатеричная (HEX)</div>
+                    <button class="select-btn">Выбрать этот план</button>
+                </div>
+
+                <div class="plan super-plan" id="superPlan" onclick="selectPlan('super', 500)">
+                    <div class="best-badge">🏆 Самый выгодный</div>
+                    <div class="plan-title">👑 Супер план</div>
+                    <div class="plan-desc">Полный доступ ко всем функциям</div>
+                    <div class="plan-price"><span class="original-price">$700</span> <span class="sale-price">$500 / год</span></div>
+                    <div class="plan-features">✓ Все функции калькулятора<br>✓ Инженерный режим<br>✓ Системы счисления<br>✓ Все функции + 28% экономия</div>
+                    <button class="select-btn">Выбрать этот план</button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 20px;">💳 Выбранный способ оплаты</h3>
+            <div class="card-info" onclick="openCardModal()" style="cursor: pointer;">
+                <div class="card-info-title">🏦 VISA Platinum</div>
+                <div class="card-info-number">Карта: •••• •••• •••• 4863</div>
+                <div class="card-selector-hint">Нажмите для выбора другой карты ▼</div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="showPaymentForm()">💳 Перейти к оплате</button>
+                <button class="btn-secondary" onclick="closePaywall()">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно оплаты -->
+<div class="modal" id="paymentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-btn" onclick="closePaymentForm()">&times;</button>
+            <h2 id="paymentTitle">🔒 Безопасная оплата</h2>
+            <p id="paymentAmount">Сумма к оплате: $0</p>
+        </div>
+        <div class="modal-body">
+            <h3 id="paymentFormTitle">Введите данные вашей карты</h3>
+            
+            <div class="input-group">
+                <label>Номер карты</label>
+                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" value="1234 5678 9012 3456">
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Срок действия (MM/YY)</label>
+                    <input type="text" id="expiry" placeholder="12/28" value="12/28">
+                </div>
+                <div class="input-group">
+                    <label>CVV</label>
+                    <input type="password" id="cvv" placeholder="123" value="123">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Имя владельца</label>
+                <input type="text" id="cardName" placeholder="IVAN PETROV" value="IVAN PETROV">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="saveCard" checked>
+                <label for="saveCard">Сохранить карту для будущих платежей</label>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="payBtn" onclick="processPaymentOrAddCard()">✓ Оплатить</button>
+                <button class="btn-secondary" onclick="closePaymentForm()">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно подтверждения платежа -->
+<div class="modal" id="confirmPaymentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-btn" onclick="closeConfirmPayment()">&times;</button>
+            <h2>💳 Подтверждение платежа</h2>
+            <p id="confirmPaymentSubtitle">Введите код из SMS</p>
+        </div>
+        <div class="modal-body">
+            <div class="payment-info">
+                <div class="payment-info-row">
+                    <span class="payment-info-label">Сумма:</span>
+                    <span class="payment-info-value" id="confirmAmount">$0</span>
+                </div>
+                <div class="payment-info-row">
+                    <span class="payment-info-label">Карточка:</span>
+                    <span class="payment-info-value" id="confirmCard">••••</span>
+                </div>
+                <div class="payment-info-row">
+                    <span class="payment-info-label">План:</span>
+                    <span class="payment-info-value" id="confirmPlan">Супер</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Код подтверждения из SMS</label>
+                <input type="text" id="smsCode" placeholder="000000" maxlength="6" autocomplete="off" inputmode="numeric" onkeypress="if(event.key==='Enter') confirmPaymentWithCode(); if (!/[0-9]/.test(event.key)) event.preventDefault();">
+                <p style="font-size: 11px; color: #999; margin-top: 8px;">Мы отправили код на номер телефона, привязанный к карточке</p>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="confirmPaymentWithCode()">✓ Подтвердить платеж</button>
+                <button class="btn-secondary" onclick="closeConfirmPayment()">Отмена</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно выбора карточки -->
+<div class="modal" id="cardModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="close-btn" onclick="closeCardModal()">&times;</button>
+            <h2>💳 Выберите способ оплаты</h2>
+            <p>Или добавьте новую карточку</p>
+        </div>
+        <div class="modal-body">
+            <div class="cards-list" id="cardsList">
+                <!-- Карточки будут добавлены сюда динамически -->
+            </div>
+
+            <button class="btn-primary" onclick="openAddCardForm()" style="width: 100%; margin-top: 20px;">➕ Добавить новую карточку</button>
+            <button class="btn-secondary" onclick="closeCardModal()" style="width: 100%; margin-top: 10px;">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<!-- Сообщение об успехе -->
+<div class="success-message" id="successMessage">
+    <h2>✓ Успешно!</h2>
+    <p id="successText">Платеж обработан!<br><br>🎉 Добро пожаловать в Premium!</p>
+    <button class="btn-primary" style="margin-top: 20px;" onclick="closeSuccess()">Закрыть</button>
+</div>
+
+<script src="calculator.js"></script>
+
+</body>
+</html>

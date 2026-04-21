@@ -2,7 +2,7 @@
 
 A feature-rich, premium calculator web application with multiple calculation modes, subscription plans, and a modern UI.
 
-[![License](https://img.shields.io/badge/license-NO%20LICENSE-red.svg)]()
+[![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)](http://unlicense.org/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 
 ## 📋 Overview
@@ -257,7 +257,12 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is **NOT LICENSED** - Use at your own risk! 😄
+This project is released under [The Unlicense](http://unlicense.org/) - it's in the **public domain**. Do whatever you want with it! No restrictions, no permissions needed. 😄
+
+```
+This is free and unencumbered software released into the public domain.
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software.
+```
 
 ## 👨‍💻 Author
 

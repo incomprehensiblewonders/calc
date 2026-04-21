@@ -2,7 +2,7 @@
 
 A feature-rich, premium calculator web application with multiple calculation modes, subscription plans, and a modern UI.
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-NO%20LICENSE-red.svg)]()
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 
 ## 📋 Overview
@@ -257,7 +257,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is **NOT LICENSED** - Use at your own risk! 😄
 
 ## 👨‍💻 Author
 

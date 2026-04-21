@@ -266,7 +266,9 @@ Anyone is free to copy, modify, publish, use, compile, sell, or distribute this 
 
 ## 👨‍💻 Author
 
-Created with ❤️ by the development team.
+Created by **meovv** 
+
+This project was **inspired by an idea from someone else** — it's not an original concept. The idea of creating a satirical calculator with absurd monetization was conceived by another developer, and meovv built upon that vision to create this working implementation.
 
 ## 📧 Support
 
@@ -300,4 +302,4 @@ By taking these practices to their absurd extreme, we hope to highlight how ridi
 
 ---
 
-**Made with ❤️ (and sarcasm) | Version 1.0.0 | 2024**
+**Created by meovv** | **Inspired by someone else's idea** | Version 1.0.0 | 2024

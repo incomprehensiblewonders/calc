@@ -1,0 +1,120 @@
+/* Стили полей ввода */
+.input-group {
+    margin-bottom: 15px;
+    animation: slideUp 0.6s ease;
+}
+
+.input-row .input-group:nth-child(1) {
+    animation: slideUp 0.6s ease 0.05s both;
+}
+
+.input-row .input-group:nth-child(2) {
+    animation: slideUp 0.6s ease 0.1s both;
+}
+
+.modal-body > .input-group:nth-of-type(1) {
+    animation: slideUp 0.6s ease 0.05s both;
+}
+
+.modal-body > .input-group:nth-of-type(2) {
+    animation: slideUp 0.6s ease 0.1s both;
+}
+
+.modal-body > .input-group:nth-of-type(3) {
+    animation: slideUp 0.6s ease 0.15s both;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 6px;
+    animation: fadeIn 0.4s ease;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 13px;
+    border: 2px solid #E8E3D8;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FFFAF5 100%);
+    font-size: 14px;
+    color: #333333;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideIn 0.5s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #D4A574;
+    background: linear-gradient(135deg, #FFFAF5 0%, #FFFEF8 100%);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1), inset 0 1px 3px rgba(212, 165, 116, 0.1);
+    animation: inputGlow 0.6s ease;
+    transform: scale(1.02);
+}
+
+.input-group input:hover:not(:focus) {
+    border-color: #DCC4B0;
+    background: linear-gradient(135deg, #FFFAF5 0%, #FFFBF7 100%);
+}
+
+#smsCode {
+    font-size: 18px !important;
+    text-align: center;
+    letter-spacing: 8px;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    transition: all 0.3s;
+}
+
+#smsCode:focus {
+    border-color: #D4A574 !important;
+    background: linear-gradient(135deg, #FFFAF5 0%, #FFFEF8 100%) !important;
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1) !important;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    animation: slideUp 0.6s ease 0.1s both;
+}
+
+/* Чекбоксы */
+.checkbox-group {
+    margin: 15px 0;
+    animation: slideIn 0.6s ease;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #D4A574;
+    transition: all 0.3s;
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+
+.checkbox-group label {
+    font-size: 13px;
+    color: #333333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label {
+    color: #D4A574;
+    font-weight: 600;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    animation: slideUp 0.6s ease;
+}

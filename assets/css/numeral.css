@@ -1,0 +1,85 @@
+/* Стили для калькулятора систем счисления */
+.numeral-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    grid-column: 1 / -1;
+}
+
+.numeral-display {
+    flex: 1;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FFFBF7 100%);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #E8E3D8;
+}
+
+.numeral-label {
+    font-size: 10px;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.numeral-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2C1810;
+    font-family: 'Courier New', monospace;
+}
+
+.numeral-input {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #E8E3D8;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FFFBF7 100%);
+    font-size: 14px;
+    color: #333333;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.numeral-input:focus {
+    outline: none;
+    border-color: #D4A574;
+    background: linear-gradient(135deg, #FFFAF5 0%, #FFFEF8 100%);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+}
+
+.numeral-output {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FFFBF7 100%);
+    border-radius: 12px;
+    padding: 15px;
+    border: 2px solid #E8E3D8;
+    margin-top: 10px;
+}
+
+.numeral-output-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #E8E3D8;
+    font-family: 'Courier New', monospace;
+}
+
+.numeral-output-item:last-child {
+    border-bottom: none;
+}
+
+.numeral-output-item strong {
+    color: #5C3D2E;
+    font-weight: 700;
+}
+
+.numeral-output-item span {
+    color: #333333;
+    font-weight: 600;
+}

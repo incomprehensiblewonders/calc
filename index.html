@@ -6,7 +6,18 @@
     <meta name="theme-color" content="#D4A574">
     <meta name="description" content="Premium Calc Pro - продвинутый калькулятор с инженерным режимом и подписками">
     <title>Premium Calc Pro</title>
-    <link rel="stylesheet" href="calculator.css">
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/calculator.css">
+    <link rel="stylesheet" href="assets/css/buttons.css">
+    <link rel="stylesheet" href="assets/css/modals.css">
+    <link rel="stylesheet" href="assets/css/inputs.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/plans.css">
+    <link rel="stylesheet" href="assets/css/numeral.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
 
@@ -296,10 +307,16 @@
 <div class="success-message" id="successMessage">
     <h2>✓ Успешно!</h2>
     <p id="successText">Платеж обработан!<br><br>🎉 Добро пожаловать в Premium!</p>
-    <button class="btn-primary" style="margin-top: 20px;" onclick="closeSuccess()">Закрыть</button>
+    <button class="btn-primary" onclick="closeSuccess()">Закрыть</button>
 </div>
 
-<script src="calculator.js"></script>
+<!-- JavaScript Files -->
+<script src="assets/js/calculator.js"></script>
+<script src="assets/js/modes.js"></script>
+<script src="assets/js/payment.js"></script>
+<script src="assets/js/cards.js"></script>
+<script src="assets/js/keyboard.js"></script>
+<script src="assets/js/init.js"></script>
 
 </body>
 </html>

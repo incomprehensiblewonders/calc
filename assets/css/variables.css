@@ -1,0 +1,41 @@
+/* Переменные и базовые стили */
+:root {
+    --primary-color: #D4A574;
+    --secondary-color: #C19A6B;
+    --light-bg: #F5F1E8;
+    --white-bg: #FFFFFF;
+    --text-dark: #2C1810;
+    --text-gray: #333333;
+    --text-light: #666666;
+    --border-color: #E8E3D8;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #F5F1E8 0%, #FFFFFF 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.calculator {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F5F1E8 100%);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    padding: 30px;
+    width: 100%;
+    max-width: 550px;
+    backdrop-filter: blur(10px);
+}
